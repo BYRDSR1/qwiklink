@@ -1,0 +1,74 @@
+/**
+ *  camera.js - All the camera permissions, setup, etc
+ */
+
+let videoLayout = undefined;
+
+const videoSetup = async () => {
+	if(navigator.mediaDevices && navigator.mediaDevices.getUserMedia) {
+		const wrapper = document.getElementById("video-wrapper");
+		const video = document.createElement("video");
+		video.id = "video";
+		video.width = document.documentElement.clientWidth;
+		video.height = document.documentElement.clientHeight;
+		video.autoplay = true;
+		video.setAttribute("playsinline", "")
+		//video["webkit-playsinline"] = true;
+		wrapper.appendChild(video);
+	} 
+}
+
+const errBack = () => {
+  console.log("uh oh");
+}
+
+const videoFeed = async () => {
+	const video = document.getElementById("video");
+	if(navigator.mediaDevices && navigator.mediaDevices.getUserMedia) {
+    // Not adding `{ audio: true }` since we only want video now
+	let videoOptions = [];
+	navigator.mediaDevices.enumerateDevices().then((devices)=>{
+		devices.forEach((device)=>{
+			device.kind === "videoinput" ? videoOptions.push(device) : null;		
+		});
+	});
+	
+	if(videoOptions > 1) {
+		videoLayout = "portrait";
+	} else {
+		videoLayout = "landscape";
+	}
+	
+	let constraints = {
+		video: {
+			facingMode: {
+				ideal: 'environment'
+			}
+		}
+	}
+
+  navigator.mediaDevices.getUserMedia(constraints).then(function(stream) {
+        //video.src = window.URL.createObjectURL(stream);
+	
+        video.srcObject = stream;
+        video.play();
+    }, errBack);
+	} else if(navigator.getUserMedia) { // Standard
+    navigator.getUserMedia({ video: true }, function(stream) {
+        video.src = stream;
+        video.play();
+    }, errBack);
+	} else if(navigator.webkitGetUserMedia) { // WebKit-prefixed
+    navigator.webkitGetUserMedia({ video: true }, function(stream){
+        video.src = window.webkitURL.createObjectURL(stream);
+        video.play();
+    }, errBack);
+	} else if(navigator.mozGetUserMedia) { // Mozilla-prefixed
+    navigator.mozGetUserMedia({ video: true }, function(stream){
+        video.srcObject = stream;
+        video.play();
+    }, errBack);
+	}
+
+}
+
