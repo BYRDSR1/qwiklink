@@ -29,7 +29,7 @@ const runOCR = async () => {
     link.hidden = false;
     go.hidden = false;
 
-    link.value = text;
+    text ? link.value = text : link.value = "Can't recognize link :(";
 
   })();
 }
