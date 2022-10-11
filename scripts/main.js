@@ -65,6 +65,9 @@ const resizeBox = () => {
   document.getElementById("box").width = document.getElementById("video").width;
   document.getElementById("box").style["margin-top"] = ((videoHeight - document.getElementById("box").clientHeight) / 2) + "px";
 
+  
+  document.getElementById("status-bar").innerHTML = `${video.clientWidth}, ${video.clientHeight}`;
+
 }
 
 const startInterval = () => {
