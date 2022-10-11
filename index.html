@@ -136,7 +136,7 @@
           videoSetup().then(videoFeed());
         }
 
-        document.getElementById("link").value = `${video.clientWidth}, ${video.clientHeight}`;
+        document.getElementById("status-bar").innerHTML = `${video.clientWidth}, ${video.clientHeight}`;
 
       });
 
