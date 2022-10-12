@@ -108,7 +108,7 @@ const showStatus = (status) => {
 
 const progress = (obj) => {
   console.log(obj);
-  document.getElementById("video-wrapper").innerHTML += obj;
+  document.getElementById("status-bar").innerHTML = obj;
   if(obj.status === "loading tesseract core") {
     showStatus(25);
   } else if(obj.status === "initializing tesseract") {
