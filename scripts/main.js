@@ -66,7 +66,7 @@ const resizeBox = () => {
   document.getElementById("box").style["margin-top"] = ((videoHeight - document.getElementById("box").clientHeight) / 2) + "px";
 
   
-  document.getElementById("status-bar").innerHTML = `${video.clientWidth}, ${video.clientHeight}`;
+  //document.getElementById("status-bar").innerHTML = `${video.clientWidth}, ${video.clientHeight}`;
 
 }
 
@@ -108,7 +108,7 @@ const showStatus = (status) => {
 
 const progress = (obj) => {
   console.log(obj);
-  document.getElementById("status-bar").innerHTML += JSON.stringify(obj);
+  //document.getElementById("status-bar").innerHTML += JSON.stringify(obj);
   if(obj.status === "loading tesseract core") {
     showStatus(25);
   } else if(obj.status === "initializing tesseract") {
