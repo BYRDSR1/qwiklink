@@ -4,6 +4,7 @@
  */
 
 intervalID = undefined;
+const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
 
 // Adjust the canvas elements size responsively
 const adjustCanvasSize = () => {
@@ -55,6 +56,17 @@ const adjustVideoSize = () => {
   const video = document.getElementById("video");
   video.width = document.documentElement.clientWidth;
   //console.log("video resized");
+
+  if(isMobile) {
+   resizeVideoWrapperHeight(.5); 
+  }
+}
+
+const resizeVideoWrapperHeight = (factor=1) => {
+  const videoWrapper = document.getElementById("video-wrapper");
+  const currentHeight = video.clientHeight;
+
+  videoWrapper.style["height"] = (factor * currentHeight).toString() + "px";
 }
 
 const resizeBox = () => {
