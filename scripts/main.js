@@ -72,7 +72,7 @@ const resizeVideoWrapperHeight = (factor=1) => {
 const resizeBox = () => {
   adjustVideoSize();
 
-  let videoHeight = (document.getElementById("video").clientWidth * 4) / 3; //CHANGE THIS LATER
+  let videoHeight = (document.getElementById("video-wrapper").clientWidth * 4) / 3; //CHANGE THIS LATER
 
   document.getElementById("box").width = document.getElementById("video").width;
   document.getElementById("box").style["margin-top"] = ((videoHeight - document.getElementById("box").clientHeight) / 2) + "px";
