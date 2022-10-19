@@ -58,7 +58,7 @@ const adjustVideoSize = () => {
   //console.log("video resized");
 
   if(isMobile) {
-   resizeVideoWrapperHeight(.5); 
+   resizeVideoWrapperHeight(.75); 
   }
 }
 
