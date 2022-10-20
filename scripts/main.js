@@ -71,8 +71,13 @@ const resizeVideoWrapperHeight = (factor=1) => {
 
 const resizeBox = () => {
   adjustVideoSize();
+  let videoHeight = undefined;
 
-  let videoHeight = (document.getElementById("video-wrapper").clientWidth * 4) / 3; //CHANGE THIS LATER
+  if(isMobile) {
+    videoHeight = (document.getElementById("video-wrapper").clientWidth * 4) / 3;
+  } else {
+    videoHeight = (document.getElementById("video-wrapper").clientWidth * 3) / 4;
+  }
 
   document.getElementById("box").width = document.getElementById("video").width;
   document.getElementById("box").style["margin-top"] = ((videoHeight - document.getElementById("box").clientHeight) / 2) + "px";
