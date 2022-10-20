@@ -67,6 +67,8 @@ const resizeVideoWrapperHeight = (factor=1) => {
   const currentHeight = video.clientHeight;
 
   videoWrapper.style["height"] = (factor * currentHeight).toString() + "px";
+
+  storeRatio();
 }
 
 const resizeBox = () => {
@@ -75,7 +77,7 @@ const resizeBox = () => {
 
   if(!localStorage.getItem("ratio")) {
     if(isMobile) {
-      videoHeight = (document.getElementById("video-wrapper").clientWidth * 4) / 3;
+      videoHeight = (document.getElementById("video-wrapper").clientWidth * 3) / 4;
     } else {
       videoHeight = (document.getElementById("video-wrapper").clientWidth * 3) / 4;
     }
