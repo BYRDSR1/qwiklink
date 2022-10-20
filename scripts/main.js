@@ -73,10 +73,18 @@ const resizeBox = () => {
   adjustVideoSize();
   let videoHeight = undefined;
 
-  if(isMobile) {
-    videoHeight = (document.getElementById("video-wrapper").clientWidth * 4) / 3;
+  if(!localStorage.getItem("ratio")) {
+    if(isMobile) {
+      videoHeight = (document.getElementById("video-wrapper").clientWidth * 4) / 3;
+    } else {
+      videoHeight = (document.getElementById("video-wrapper").clientWidth * 3) / 4;
+    }
   } else {
-    videoHeight = (document.getElementById("video-wrapper").clientWidth * 3) / 4;
+    if(isMobile) {
+      videoHeight = (document.getElementById("video-wrapper").clientWidth * (localStorage.getItem("ratio") ** -1));
+    } else {
+      videoHeight = (document.getElementById("video-wrapper").clientWidth * (localStorage.getItem("ratio") ** -1));
+    }
   }
 
   document.getElementById("box").width = document.getElementById("video").width;
@@ -85,6 +93,16 @@ const resizeBox = () => {
   
   //document.getElementById("status-bar").innerHTML = `${video.clientWidth}, ${video.clientHeight}`;
 
+}
+
+const storeRatio = () => {
+  const videoWrapper = document.getElementById("video-wrapper");
+  const width = videoWrapper.clientWidth;
+  const height = videoWrapper.clientHeight;
+
+  let ratio = width / height;
+
+  localStorage.setItem("ratio", ratio);
 }
 
 const startInterval = () => {
@@ -96,6 +114,7 @@ const stopInterval = () => {
 }
 
 const getURL = () => {
+  storeRatio();
   canvasFeed();
 
   document.getElementById("link").value = "";
